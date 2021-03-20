@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -61,4 +61,412 @@
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="client.js"></script>
   </body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<style>
+    :root {
+     --primary:#e111ed;
+     --blue:#49c5db;
+     --secondary:#3672a5;
+     --black:#464EB8;
+     --secondaryBlack:#14325e;
+}
+
+/* body {
+  background-color: var(--blue);
+}
+
+h2 {
+  border-bottom: 2px solid var(--blue);
+} */
+    /* ------switch----------- */
+    .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #080f14;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #06090c;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+  /* ----  css animation  */
+
+
+.fade-in {
+animation: fadeIn ease 2s;
+-webkit-animation: fadeIn ease 20s;
+-moz-animation: fadeIn ease 20s;
+-o-animation: fadeIn ease 20s;
+-ms-animation: fadeIn ease 20s;
+}
+@keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+    body{
+        margin:0;
+        padding:0;
+    }
+ .container{
+     width:100%;
+     height:100vh;
+     display: flex;
+ }   
+ .content{
+   flex:18;
+   /* background:var(--secondaryBlack); */
+   padding: 10px;
+ }
+
+ .header{
+    position:relative;
+    flex:1;
+    display: flex;
+    flex-direction:column;
+    background: var(--black);
+    align-items: center;
+    /* justify-content: space-evenly; */
+    transition: all 0.1s;
+    box-shadow: 2px 1px 2px black;
+   
+ }
+ .loader{
+      width:100%;
+      height: 100vh;
+      position: absolute;
+      background: rgb(230, 230, 230);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+ }
+ .loader-inner{
+    
+      width:100px;
+      height: 100px;
+     
+ }
+ .home{
+     border-radius: 7px;
+     background-color: white;
+     padding: 10px;
+     box-shadow: 1px 1px 2px black;
+ 
+ }
+ .about{
+     border-radius: 7px;
+     background-color: white;
+     padding: 10px;
+     box-shadow: 1px 1px 2px black;
+     height: 20%;
+ }
+ .contact{
+     border-radius: 7px;
+     background-color: var(--black);
+     padding: 10px;
+     box-shadow: 1px 1px 2px black;
+     height: 20%;
+ }
+ .header-button {
+     display: flex;
+     flex-direction: row;
+     background: none;
+     margin: 20px auto;
+     /* padding: 10px; */
+     border-radius: 3px;
+     outline: none;
+     border:none;
+     color: rgb(247, 250, 252);
+     
+ }
+ .header-btn-active{
+    display: flex;
+     flex-direction: row;
+     background: none;
+     margin: 10px auto;
+     padding: 10px;
+     border-radius: 3px;
+     outline: none;
+     border:none;
+    background: var(--primary);
+    color: white;
+    font-weight: bold;
+ }
+ .header button span{
+     display: none;
+ }
+ .header:hover{
+    flex:3;
+ }
+ .header:hover button span{
+     display: block;
+     margin-left: 5px;
+ }
+ .offlineAlert{
+   position:absolute;
+   background-color:rgba(7, 0, 0,.1);
+   width:100%;
+   height:100vh;
+   top:-50px;
+ }
+ /* lectures-row */
+ .lectures-row{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+ .lectures{
+   flex:7;
+   height: 90vh;
+   overflow-x: hidden;
+   overflow-y: scroll;
+ }
+ .lectures-card{
+   height: 100px;
+ }
+ .lectures-row{
+   flex:3;
+   /* align-self: center; */
+   
+ }
+
+ .remote-video{
+   width: 100%;
+   height: 100vh;
+ }
+ .local-video{
+  width: 100px;
+   height: 100px;
+ }
+</style>
+</head>
+<body onload="loader();checkOnline();">
+<div class="container">
+    <div class="header">
+        <img style="width:60px;margin:20px 0" src="http://assets.stickpng.com/images/5e8cdf0a664eae000408545b.png"/>
+       
+        <button id="home-btn" class="header-btn-active" onClick="replaceContentInContainer('home')">
+            <i class="fa fa-user"></i> <span>Lectures</span>
+        </button>
+        <button id="aboutus-btn"  class="header-button"  onClick="replaceContentInContainer('aboutus')">
+            <i class="fa fa-user"></i> <span>Assignment</span>
+        </button>
+        <button id="contact-btn"  class="header-button"  onClick="replaceContentInContainer('contact')">
+            <i class="fa fa-user"></i> <span>Class Mates</span>
+        </button>
+        <label class="switch">
+            <input type="checkbox" id="checkbox" onclick="themeChange()" checked>
+            <span class="slider round"></span>
+          </label>
+    </div>
+        <div class="content">
+        <div id="home" >
+          <!-- <video class="home" controls>
+            <source src="https://youtu.be/2xWkATdMQms" type="video/mp4">
+            <source src="https://youtu.be/2xWkATdMQms" type="video/ogg">
+            Your browser does not support HTML video.
+          </video>
+           -->
+          <div class="lectures-row">
+            <div class="lectures">
+              <div id="room-selection-container" class="centered">
+                <h1>WebRTC video conference</h1>
+                <label>Enter the number of the room you want to connect</label>
+                <input id="room-input" type="text" />
+                <button id="connect-button">CONNECT</button>
+              </div>
+          
+             
+               
+                <video id="remote-video" autoplay="autoplay"></video>
+              
+          
+              <script src="/socket.io/socket.io.js"></script>
+              <script type="text/javascript" src="client.js"></script>
+            </div>
+            <video id="local-video" autoplay="autoplay" muted="muted"></video>
+            <img style="width:100px; " src="./undraw_teacher_35j2.png"/>
+          </div>
+        </div>
+        
+        <div id="aboutus" class="about" style="display:none">
+          <span >About</span>
+        </div>
+        <div id="contact" class="contact" style="display:none">
+          <span >Contact</span>
+        </div>
+        </div>
+        <div id="loader" class="loader">
+            <img  src="loader.gif" class="loader-inner">  
+        </div>
+
+        <p id="offlineAlert" class="offlineAlert" style="display:none">Offline</p>
+</div>
+
+<script>
+function replaceContentInContainer(target) {
+  
+     let objDOM=document.getElementById(target);
+     let aboutusBtn=document.getElementById("aboutus-btn");
+     let contactBtn=document.getElementById("contact-btn");
+     let homeBtn=document.getElementById("home-btn");
+    
+  if(target=="home"){
+    loader()    
+    homeBtn.classList.remove("header-button"); 
+    contactBtn.classList.remove("header-btn-active")
+    aboutusBtn.classList.remove("header-btn-active")
+    contactBtn.classList.add("header-button")
+    aboutusBtn.classList.add("header-button")
+    homeBtn.classList.add("header-btn-active");
+    objDOM.style.display="block";
+     document.getElementById("aboutus").style.display="none"
+     document.getElementById("contact").style.display="none"
+    
+    }
+    if(target=="contact"){
+   loader()  
+    contactBtn.classList.remove("header-button"); 
+    homeBtn.classList.remove("header-btn-active")
+    aboutusBtn.classList.remove("header-btn-active")
+    aboutusBtn.classList.add("header-button")
+    homeBtn.classList.add("header-button")
+    contactBtn.classList.add("header-btn-active");
+     objDOM.style.display="block";
+     document.getElementById("aboutus").style.display="none"
+     document.getElementById("home").style.display="none"
+     
+    }
+    if(target=="aboutus"){
+    loader()    
+    aboutusBtn.classList.remove("header-button"); 
+    contactBtn.classList.remove("header-btn-active")
+    homeBtn.classList.remove("header-btn-active")
+    contactBtn.classList.add("header-button")
+    homeBtn.classList.add("header-button")
+    homeBtn.classList.remove("header-btn-active")
+    aboutusBtn.classList.add("header-btn-active");
+     objDOM.style.display="block";
+     document.getElementById("home").style.display="none"
+     document.getElementById("contact").style.display="none"
+    
+    }
+}
+ function loader(){
+    themeChange()
+     let loader=document.getElementById("loader");
+    loader.style.display="flex";
+     setTimeout(()=>{
+       
+        loader.style.display="none";
+     }, 1000)
+ }
+ function themeChange() {
+     let checkBox=document.getElementById("checkbox");
+    //  getComputedStyle(document.documentElement).getPropertyValue('--secondaryBlack');
+     if(checkBox.checked == true){
+     
+        // document.documentElement.style.setProperty('--secondaryBlack', 'pink');
+        // console.log( getComputedStyle(document.documentElement).getPropertyValue('--secondaryBlack'))
+        document.body.style.backgroundColor = "#14325e";
+     }else{
+        // document.documentElement.style.setProperty('--secondaryBlack', 'red');
+        // console.log( getComputedStyle(document.documentElement).getPropertyValue('--secondaryBlack'))
+        document.body.style.backgroundColor = "white";
+     }
+    // checkBox.checked
+  
+}
+function checkOnline() {
+setInterval(function(){
+  let onlineAlert=document.getElementById("offlineAlert")
+  if(navigator.onLine){
+    onlineAlert.style.display="none"
+  }else{
+     onlineAlert.style.display="block"
+  }
+},1000)
+
+ 
+}
+</script>
+
+</body>
 </html>
