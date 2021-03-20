@@ -291,6 +291,7 @@ animation: fadeIn ease 2s;
    display: flex;
    align-items: center;
    justify-content: center;
+   
  }
  .lectures{
    flex:7;
@@ -298,23 +299,26 @@ animation: fadeIn ease 2s;
    overflow-x: hidden;
    overflow-y: scroll;
  }
+ .student-lectures{
+  flex:3;
+ }
  .lectures-card{
    height: 100px;
  }
- .lectures-row{
-   flex:3;
-   /* align-self: center; */
-   
- }
+
 
  #remote-video{
-   width: 400px;
-   height: 400px;
+   width: 300px;
+   height: 300px;
    box-shadow:2px 2px 9px gray;
+   padding: 10px;
+   border-radius: 3px;
  }
  #local-video{
-  width: 100px;
-   height: 100px;
+  width: 150px;
+   height: 150px;
+   padding: 10px;
+   border-radius: 3px;
    box-shadow:2px 2px 9px gray;
  }
 </style>
@@ -346,32 +350,30 @@ animation: fadeIn ease 2s;
             Your browser does not support HTML video.
           </video>
            -->
-          <div class="lectures-row">
-            <div class="lectures">
-          
-          
-             
-               
-              
-              <div id="room-selection-container" class="centered">
+        
+                <div id="room-selection-container" class="centered">
+                
                 <h1>WebRTC video conference</h1>
                 <label>Enter the number of the room you want to connect</label>
                 <input id="room-input" type="text" />
                 <button id="connect-button">CONNECT NOw</button>
               </div>
-          
-            
                 <div id="video-chat-container" class="video-position" style="display: none">
-                  <video id="remote-video" autoplay="autoplay"></video>
-                  <video id="local-video" autoplay="autoplay" muted="muted"></video>
+                  <div class="lectures-row">
+                    <div class="lectures">
+                      <video id="remote-video" autoplay="autoplay"></video>
+                 
                  
                 </div>
+                <div class="student-lectures">
+                  <img style="width:100px; " src="./undraw_teacher_35j2.png"/>
+                  <center>Students</center>
+                  <video id="local-video" autoplay="autoplay" muted="muted"></video>
+                </div>
                </div> 
+           </div>
           
-             
-            </div>
           
-            <img style="width:100px; " src="./undraw_teacher_35j2.png"/>
             
           </div>
         </div>
