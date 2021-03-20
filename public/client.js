@@ -112,7 +112,7 @@ function joinRoom(room) {
 function showVideoConference() {
   roomSelectionContainer.style = 'display: none'
   localVideoComponent.style = 'display: block'
-  remoteVideoComponent..style = 'display: block'
+  remoteVideoComponent.style = 'display: block'
 }
 
 async function setLocalStream(mediaConstraints) {
