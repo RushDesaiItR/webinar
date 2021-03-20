@@ -111,7 +111,8 @@ function joinRoom(room) {
 
 function showVideoConference() {
   roomSelectionContainer.style = 'display: none'
-  videoChatContainer.style = 'display: block'
+  localVideoComponent.style = 'display: block'
+  remoteVideoComponent..style = 'display: block'
 }
 
 async function setLocalStream(mediaConstraints) {
