@@ -355,13 +355,23 @@ animation: fadeIn ease 2s;
           
              
                
-                <video id="remote-video" autoplay="autoplay"></video>
               
+              <div id="room-selection-container" class="centered">
+                <h1>WebRTC video conference</h1>
+                <label>Enter the number of the room you want to connect</label>
+                <input id="room-input" type="text" />
+                <button id="connect-button">CONNECT NOw</button>
+              </div>
+          
+              <div id="video-chat-container" class="video-position" style="display: none">
+                <video id="local-video" autoplay="autoplay" muted="muted"></video>
+                <video id="remote-video" autoplay="autoplay"></video>
+              </div>
           
               <script src="/socket.io/socket.io.js"></script>
               <script type="text/javascript" src="client.js"></script>
             </div>
-            <video id="local-video" autoplay="autoplay" muted="muted"></video>
+          
             <img style="width:100px; " src="./undraw_teacher_35j2.png"/>
           </div>
         </div>
