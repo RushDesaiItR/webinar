@@ -2,7 +2,7 @@
 const roomSelectionContainer = document.getElementById('room-selection-container')
 const roomInput = document.getElementById('room-input')
 const connectButton = document.getElementById('connect-button')
-
+const MainIdHere;
 const videoChatContainer = document.getElementById('video-chat-container')
 const localVideoComponent = document.getElementById('local-video')
 const remoteVideoComponent = document.getElementById('remote-video')
@@ -29,10 +29,15 @@ const iceServers = {
     { urls: 'stun:stun4.l.google.com:19302' },
   ],
 }
-
+function mainId(){
+  const id = new URLSearchParams(window.location.search)
+        params.has('id')
+         MainIdHere=params.get('id')
+         console.log(MainIdHere)
+}
 // BUTTON LISTENER ============================================================
 connectButton.addEventListener('click', () => {
-  joinRoom(1)
+  joinRoom(MainIdHere)
 })
 
 // SOCKET EVENT CALLBACKS =====================================================

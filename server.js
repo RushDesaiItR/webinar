@@ -4,7 +4,9 @@ const server = require('http').createServer(app)
 const io = require('socket.io')(server)
 
 app.use('/', express.static('public'))
-
+// app.get("/",(req, res)=>{
+//   res.send()
+// })
 io.on('connection', (socket) => {
   socket.on('join', (roomId) => {
     const roomClients = io.sockets.adapter.rooms[roomId] || { length: 0 }
