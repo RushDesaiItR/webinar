@@ -1,0 +1,85 @@
+<!-- git commit -m "ui"
+git push -u origin master
+git push heroku -->
+<html>
+  <head>
+    <link rel="stylesheet" href="./style.css"/>
+  </head>
+   <body onload="processUser()">
+       <div class="navbar">
+  <a href="#home">Fresh</a>
+  <a href="#news">News</a>
+  <div class="dropdown">
+    <button class="dropbtn">Dropdown 
+      <img style="width: 15px;height: 15px;" src="https://img.icons8.com/ios/2x/drag-list-down.png"/>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </div> 
+</div>
+<div class="row">
+   
+        <img id="productImg" src=""/> 
+        <div style="padding:10px">
+            <h1 id="name"></h1>  
+            <h4 id="price"></h4>
+            <div class="Quantity">
+              <button onclick="more()">+</button>
+              <input type="text" style="font-weight: bold;" value="1" id="qty">
+              <span>Kg</span>
+              <button  onclick="less()">-</button>
+            </div>
+            <h1>Total = <span id="total"></span> </h1>
+        </div>
+        <div class="formbuy" style="padding:10px">
+            <input type="text" placeholder="Name"/>
+            <input type="text" placeholder="Address"/>
+            <input type="text" placeholder="Pin Code"/>
+            <button type="submit" class="btn">Check Out </button>
+        </div>
+   
+</div>
+<script> 
+    let MainPrice;
+    let totalPrice;
+    function more() {
+       let qty=document.getElementById("qty").value
+       document.getElementById("qty").value = +qty+1
+       let qty2=document.getElementById("qty").value
+       totalPrice=MainPrice*qty2
+       document.getElementById("total").innerHTML=totalPrice
+    }
+    function less(){
+        let qty=document.getElementById("qty").value
+         if(qty > 1){
+            document.getElementById("qty").value = qty-1
+            let qty2=document.getElementById("qty").value
+            totalPrice=totalPrice-MainPrice
+            document.getElementById("total").innerHTML=totalPrice
+            
+         }
+    }
+    function processUser()
+    {
+        const params = new URLSearchParams(window.location.search)
+        params.has('name')
+        let name=params.get('name')
+        document.getElementById("name").innerHTML=name
+        params.has('img')
+        let img=params.get('img')
+        document.getElementById("productImg").src=img
+        params.has('price')
+        let price=params.get('price')
+       MainPrice=price
+        totalPrice=MainPrice
+         document.getElementById("total").innerHTML=MainPrice
+        console.log(MainPrice)
+        document.getElementById("price").innerHTML=price + "."+"00"
+       
+    }
+  </script>
+  </body>
+</html>
