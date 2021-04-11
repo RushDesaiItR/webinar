@@ -32,7 +32,7 @@ const iceServers = {
 
 // BUTTON LISTENER ============================================================
 connectButton.addEventListener('click', () => {
-  joinRoom(roomInput.value)
+  joinRoom(1)
 })
 
 // SOCKET EVENT CALLBACKS =====================================================
