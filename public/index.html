@@ -472,7 +472,7 @@ animation: fadeIn ease 2s;
             </div>
         </div>
         <script src="/socket.io/socket.io.js"></script>
-        <script type="text/javascript" src="client.js"></script>
+        <script type="text/javascript" defer src="client.js"></script>
         <div id="contact" class="contact" style="display:none">
           <span >Contact</span>
         </div>
@@ -568,6 +568,7 @@ function replaceContentInContainer(target) {
     
     }
 }
+
  function loader(){
     // themeChange()
     MainIdHere()
@@ -577,6 +578,7 @@ function replaceContentInContainer(target) {
        loader.style.display="none";
      }, 1000)
  }
+ 
  function themeChange() {
      let checkBox=document.getElementById("checkbox");
     //  getComputedStyle(document.documentElement).getPropertyValue('--secondaryBlack');
