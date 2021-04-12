@@ -30,19 +30,10 @@ const iceServers = {
     { urls: 'stun:stun4.l.google.com:19302' },
   ],
 }
-// function mainId(){
-//       // const params  = new URLSearchParams(window.location.search)
-//       //   params.has('id')
-//       //   let MainIdHere=params.get('id')
-//          console.log("MainIdHere")
-// }
-var body = document.getElementsByTagName("body")[0];
-body.addEventListener('load', () => {
-  console.log('Logo has been loaded!');
-});
+
 // BUTTON LISTENER ============================================================
 connectButton.addEventListener('click', () => {
-  // joinRoom(MainIdHere)
+   joinRoom(roomInput.value)
 })
 
 // SOCKET EVENT CALLBACKS =====================================================
