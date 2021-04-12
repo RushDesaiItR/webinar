@@ -490,10 +490,12 @@ animation: fadeIn ease 2s;
 
 <script>
 function nnnnnn(){
-  console.log("nnnnnn()")
+
         const params = new URLSearchParams(window.location.search)
         params.has('id')
         let idr=params.get('id')
+        var roomInput=document.getElementById("room-input").value="djdu"
+        console.log(roomInput)
         console.log(idr)
 }
   let assigned=false
