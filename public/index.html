@@ -349,8 +349,11 @@ animation: fadeIn ease 2s;
    box-shadow:2px 2px 9px gray;
  }
 </style>
+
 </head>
-<body onload="loader()">
+<body onload="nnnnnn()">
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript" defer src="client.js"></script>
 <div class="container">
   checked
     <div class="header">
@@ -471,15 +474,14 @@ animation: fadeIn ease 2s;
              </div>
             </div>
         </div>
-        <script src="/socket.io/socket.io.js"></script>
-        <script type="text/javascript" defer src="client.js"></script>
+      
         <div id="contact" class="contact" style="display:none">
           <span >Contact</span>
         </div>
         </div>
-        <div id="loader" class="loader">
+        <!-- <div id="loader" class="loader">
           <img  src="loader.gif" class="loader-inner">  
-      </div>
+      </div> -->
       </div>  
        
 
@@ -487,6 +489,13 @@ animation: fadeIn ease 2s;
 </div>
 
 <script>
+function nnnnnn(){
+  console.log("nnnnnn()")
+        const params = new URLSearchParams(window.location.search)
+        params.has('id')
+        let idr=params.get('id')
+        console.log(idr)
+}
   let assigned=false
   document.getElementById("assignedBtn").addEventListener("click", function(){
     if(assigned){
@@ -570,8 +579,8 @@ function replaceContentInContainer(target) {
 }
 
  function loader(){
-    // themeChange()
-    MainIdHere()
+  
+    
      let loader=document.getElementById("loader");
     loader.style.display="flex";
      setTimeout(()=>{

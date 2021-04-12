@@ -2,7 +2,8 @@
 const roomSelectionContainer = document.getElementById('room-selection-container')
 const roomInput = document.getElementById('room-input')
 const connectButton = document.getElementById('connect-button')
- 
+var body = document.getElementsByTagName("body")[0];
+
 const videoChatContainer = document.getElementById('video-chat-container')
 const localVideoComponent = document.getElementById('local-video')
 const remoteVideoComponent = document.getElementById('remote-video')
@@ -29,15 +30,19 @@ const iceServers = {
     { urls: 'stun:stun4.l.google.com:19302' },
   ],
 }
-function mainId(){
-  const id = new URLSearchParams(window.location.search)
-        params.has('id')
-        let MainIdHere=params.get('id')
-         console.log(MainIdHere)
-}
+// function mainId(){
+//       // const params  = new URLSearchParams(window.location.search)
+//       //   params.has('id')
+//       //   let MainIdHere=params.get('id')
+//          console.log("MainIdHere")
+// }
+var body = document.getElementsByTagName("body")[0];
+body.addEventListener('load', () => {
+  console.log('Logo has been loaded!');
+});
 // BUTTON LISTENER ============================================================
 connectButton.addEventListener('click', () => {
-  joinRoom(MainIdHere)
+  // joinRoom(MainIdHere)
 })
 
 // SOCKET EVENT CALLBACKS =====================================================
