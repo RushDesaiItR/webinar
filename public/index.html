@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    https://webinar-webrtc-siom-network.herokuapp.com/
     <title>WebRTC</title>
 git commit -m "ui"
 git push -u origin master
@@ -113,8 +114,8 @@ git push heroku
     width: 25%;
     display:flex;
     flex-direction:column;
-    /* height: 100vh; */
-    height: 90vh;
+     height: 100vh; 
+    /* height: 90vh; */
     overflow: scroll;
   }
  .chat-inner{
@@ -187,7 +188,7 @@ git push heroku
 </style>
 
 </head>
-<body onload="dataload()">
+<body onload="connectButtonFUn()">
   <script src="/socket.io/socket.io.js"></script>
   <script type="text/javascript" defer src="client.js"></script>
    <div class="row">

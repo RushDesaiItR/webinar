@@ -60,10 +60,21 @@ socket.on("messagemy",(msg)=>{
   appendMsg(msg, "incoming")
 })
 // BUTTON LISTENER ============================================================
-connectButton.addEventListener('click', () => {
-   joinRoom(roomInput.value)
-})
+// connectButton.addEventListener('click', () => {
+  
+//    joinRoom(roomInput.value)
+// })
+function connectButtonFUn(){
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+   const link = urlParams.get('name')
+   console.log(link);
+ 
 
+
+  console.log("Called.................>..................Q")
+  joinRoom(4565)
+}
 
 
 
