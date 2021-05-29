@@ -7,7 +7,13 @@ app.use('/', express.static('public'))
 // app.get("/",(req, res)=>{
 //   res.send()
 // })
+
 io.on('connection', (socket) => {
+  console.log("connected.....")
+  socket.on("messagemy", (data)=>{
+    console.log("data", data);
+    socket.broadcast.emit("messagemy", data)
+  })
   socket.on('join', (roomId) => {
     const roomClients = io.sockets.adapter.rooms[roomId] || { length: 0 }
     const numberOfClients = roomClients.length
@@ -36,6 +42,22 @@ io.on('connection', (socket) => {
     console.log(`Broadcasting webrtc_offer event to peers in room ${event.roomId}`)
     socket.broadcast.to(event.roomId).emit('webrtc_offer', event.sdp)
   })
+
+ 
+  // const chatWindow = document.querySelector('.chat-inner')
+
+  // const renderMessage = message => {
+  //   const div = document.createElement('div')
+  //   div.classList.add('render-message')
+  //   div.innerText = message
+  //   chatWindow.appendChild(div)
+  // }
+  //   socket.on('chat', message => {
+      
+  //     renderMessage(message)
+  //   // io.emit('chat', message)
+  //  })
+  
   socket.on('webrtc_answer', (event) => {
     console.log(`Broadcasting webrtc_answer event to peers in room ${event.roomId}`)
     socket.broadcast.to(event.roomId).emit('webrtc_answer', event.sdp)

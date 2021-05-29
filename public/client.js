@@ -3,8 +3,9 @@ const roomSelectionContainer = document.getElementById('room-selection-container
 const roomInput = document.getElementById('room-input')
 const connectButton = document.getElementById('connect-button')
 var body = document.getElementsByTagName("body")[0];
-
+let mainDiv = document.querySelector(".chat-inner") 
 const videoChatContainer = document.getElementById('video-chat-container')
+const videoChatContainer2 = document.getElementById('video-chat-container2')
 const localVideoComponent = document.getElementById('local-video')
 const remoteVideoComponent = document.getElementById('remote-video')
 
@@ -30,11 +31,41 @@ const iceServers = {
     { urls: 'stun:stun4.l.google.com:19302' },
   ],
 }
-
+let sendBtn = document.getElementById("send")
+let sendBox = document.getElementById("box")
+sendBtn.addEventListener("click", function(e) {
+   callThis(sendBox.value)
+})
+function callThis(value) {
+  let msg ={
+    name:"Rushikesh",
+    message:value,
+  }
+   appendMsg(msg, "outgoing")
+   socket.emit("messagemy", msg)
+}
+function appendMsg(msg, type){
+  
+   let newDiv = document.createElement("div")
+   let className = type;
+   newDiv.classList.add(className, "msg")
+   let txt = `
+    <span>${msg.name}</span>
+    <h5>${msg.message}</h5>
+   `;
+   newDiv.innerHTML=txt;
+   mainDiv.appendChild(newDiv);
+}
+socket.on("messagemy",(msg)=>{
+  appendMsg(msg, "incoming")
+})
 // BUTTON LISTENER ============================================================
 connectButton.addEventListener('click', () => {
    joinRoom(roomInput.value)
 })
+
+
+
 
 // SOCKET EVENT CALLBACKS =====================================================
 socket.on('room_created', async () => {
@@ -158,12 +189,17 @@ async function createAnswer(rtcPeerConnection) {
     console.error(error)
   }
 
+
+
+
   socket.emit('webrtc_answer', {
     type: 'webrtc_answer',
     sdp: sessionDescription,
     roomId,
   })
 }
+
+
 
 function setRemoteStream(event) {
   remoteVideoComponent.srcObject = event.streams[0]
