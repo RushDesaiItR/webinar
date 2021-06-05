@@ -10,6 +10,21 @@ app.use('/', express.static('public'))
 
 io.on('connection', (socket) => {
   console.log("connected.....")
+  socket.on('base64 file', function (msg) {
+    console.log('received base64 file from' + msg.username);
+    socket.username = msg.username;
+    // socket.broadcast.emit('base64 image', //exclude sender
+    socket.broadcast.emit('base64 file',  //include sender
+
+        {
+          username: socket.username,
+          file: msg.file,
+          fileName: msg.fileName
+        }
+   
+    );
+    console.log(msg)
+});
   socket.on("messagemy", (data)=>{
     console.log("data", data);
     socket.broadcast.emit("messagemy", data)

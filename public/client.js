@@ -9,6 +9,31 @@ const videoChatContainer2 = document.getElementById('video-chat-container2')
 const localVideoComponent = document.getElementById('local-video')
 const remoteVideoComponent = document.getElementById('remote-video')
 
+
+
+
+$('#uploadfile').bind('change', function(e){
+  var data = e.originalEvent.target.files[0];
+  readThenSendFile(data);      
+});
+function readThenSendFile(data){
+
+var reader = new FileReader();
+reader.onload = function(evt){
+  var msg ={};
+  msg.username = "username";
+  msg.file = evt.target.result;
+  msg.fileName = data.name;
+  appendImg(msg, "outgoing")
+  socket.emit('base64 file', msg);
+  console.log(msg)
+};
+reader.readAsDataURL(data);
+
+}
+
+
+
 // Variables.
 const socket = io()
 const mediaConstraints = {
@@ -45,8 +70,7 @@ function callThis(value) {
    socket.emit("messagemy", msg)
 }
 function appendMsg(msg, type){
-  
-   let newDiv = document.createElement("div")
+  let newDiv = document.createElement("div")
    let className = type;
    newDiv.classList.add(className, "msg")
    let txt = `
@@ -56,8 +80,40 @@ function appendMsg(msg, type){
    newDiv.innerHTML=txt;
    mainDiv.appendChild(newDiv);
 }
+function appendImg(source, type){
+        let newDiv = document.createElement("div")
+        let className = type;
+        newDiv.classList.add(className, "msg")
+        let img= document.createElement("img")
+        img.src=source.file
+        img.style.width = "100%";
+        img.style.height = "100%";
+        var a = document.createElement('a');
+			  var link = document.createTextNode("Download");
+			  a.appendChild(link);
+				a.title = "Download";
+				a.href = source.file;
+        modalImg = document.getElementById('Image');
+        modalImg.setAttribute("src", source.file);
+        img.addEventListener("click", function(e) {
+           document.getElementById('ImageBox').style.display = "flex"
+        })
+      
+        newDiv.appendChild(img)
+        newDiv.appendChild(a)
+        mainDiv.appendChild(newDiv);
+}
+
+
+
+
+
+
 socket.on("messagemy",(msg)=>{
   appendMsg(msg, "incoming")
+})
+socket.on('base64 file', (msg)=>{
+  appendImg(msg, "incoming")
 })
 // BUTTON LISTENER ============================================================
 // connectButton.addEventListener('click', () => {

@@ -69,6 +69,7 @@ git push heroku
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <style>
     :root {
@@ -107,7 +108,7 @@ git push heroku
    box-shadow:2px 2px 9px gray;
  }
  #chat{
-  width: 25%;
+  width: 35%;
   border: 1px solid #6851d7;
   }
   #medicine{
@@ -168,6 +169,24 @@ git push heroku
     border-radius: 0px 30px 30px 30px;
     padding: 10px 20px 0px 10px;
   }
+  .outgoingImg{
+    background-color: #f2f2f2;
+    width:70%;
+    float:right;
+    margin: 10px 5px 10px 0;
+    border-radius: 30px 30px 0 30px;
+    color:#6851d7;
+    padding: 10px 10px 0px 20px;
+  }
+  .incomingImg{
+    background-color: #6851d7;
+    width:70%;
+    float:left;
+    color: white;
+    margin: 10px 0 10px 5px;
+    border-radius: 0px 30px 30px 30px;
+    padding: 10px 20px 0px 10px;
+  }
   .msg span{
     margin-top: -0px;
     font-size: 13px;
@@ -185,12 +204,61 @@ git push heroku
     color: #fff;
   }
   /* http://localhost:3800/medicine */
+  .fileDislay{
+    position: absolute;
+    width: 100%;
+    height: 97vh;
+    background: rgba(128, 128, 128, .7);
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  .fileDislay img{
+    padding:50px 10px 10px;
+    background-color: white;
+    position: relative;
+    width:400px;
+    width:400px;
+  }
+  .fileDislay i{
+    padding:10px;
+    background-color: white;
+    z-index: 7;
+    position: absolute;
+    border-radius: 350px;
+    box-shadow: 2px 2px 9px gray;
+    top:0;
+    cursor: pointer;
+  }
+  
+  
+  input[type=file]::file-selector-button {
+  border: 2px solid #6851d7;
+  padding: .2em .4em;
+  border-radius: .2em;
+  background-color: #6851d7;
+  transition: 1s;
+  color:white;
+}
+
+input[type=file]::file-selector-button:hover {
+  background-color: #81ecec;
+  border: 2px solid #00cec9;
+}
+
 </style>
 
 </head>
 <body onload="connectButtonFUn()">
   <script src="/socket.io/socket.io.js"></script>
   <script type="text/javascript" defer src="client.js"></script>
+  <!-- style="display:none" -->
+  <div class="fileDislay" style="display:none" id="ImageBox">
+    <i class="fa fa-times" onclick="document.getElementById('ImageBox').style.display = 'none'"  aria-hidden="true"></i>
+    <center> <img id="Image"/></center>
+  </div>
    <div class="row">
   <div id="room-selection-container" class="centered">
                 
@@ -200,7 +268,7 @@ git push heroku
   </div>
     <div  id="video-chat-container" class="video-position" style="display: none">
           <video id="remote-video" controls autoplay="autoplay"></video>
-          
+         
           <video id="local-video" controls autoplay="autoplay" muted="muted"></video>
     </div>
 
@@ -217,6 +285,7 @@ git push heroku
       <div class="chat-input">
         <input id="box" placeholder="Type Youe Message" type="text"/>
         <button id="send" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+        <input  type="file" id="uploadfile"/> 
       </div>
   </div>
   <!-- <div id="medicine">
@@ -237,161 +306,7 @@ git push heroku
        
   
 
-<script>
 
-
-// function dataload(){
- 
-//   fetch('http://localhost:3800/medicine')
-//   .then(response => response.json())
-//   .then(data => {
-//     console.log(data)
-//     show(data)
-//      console.log(data)
-//   });
-  
-// }
-function show(data) {
-   
-  document.getElementById("name").style.display="block";
-    for(let i=0;i<=data.length;i++){
-      document.getElementById("pic").src += data[i].pic;
-      document.getElementById("name").innerHTML += data[i].name;
-      document.getElementById("des").src += data[i].des;
-      document.getElementById("price").innerHTML += data[i].price;
-      
-    }
-}
-function nnnnnn(){
-
-        const params = new URLSearchParams(window.location.search)
-        params.has('id')
-        let idr=params.get('id')
-        var roomInput=document.getElementById("room-input").value=idr
-        console.log(roomInput)
-        console.log(idr)
-}
-  let assigned=false
-  document.getElementById("assignedBtn").addEventListener("click", function(){
-    if(assigned){
-      document.getElementById("assignedBtnOpen").style.display="none"
-      document.getElementById("fa-arrow-down").style.display="none"
-      document.getElementById("fa-arrow-right").style.display="flex"
-      assigned=!assigned
-      
-    }else{
-      document.getElementById("assignedBtnOpen").style.display="block"
-  
-      document.getElementById("fa-arrow-right").style.display="none"
-      document.getElementById("fa-arrow-down").style.display="flex"
-      assigned=!assigned
-    }
-  });
-
-  let assigned2=false
-  document.getElementById("assignedBtn2").addEventListener("click", function(){
-    if(assigned2){
-      document.getElementById("assignedBtnOpen2").style.display="none"
-      document.getElementById("fa-arrow-down2").style.display="none"
-      document.getElementById("fa-arrow-right2").style.display="flex"
-      assigned2=!assigned2
-      
-    }else{
-      document.getElementById("assignedBtnOpen2").style.display="block"
-  
-      document.getElementById("fa-arrow-right2").style.display="none"
-      document.getElementById("fa-arrow-down2").style.display="flex"
-      assigned2=!assigned2
-    }
-  });
-function replaceContentInContainer(target) {
-  
-     let objDOM=document.getElementById(target);
-     let aboutusBtn=document.getElementById("aboutus-btn");
-     let contactBtn=document.getElementById("contact-btn");
-     let homeBtn=document.getElementById("home-btn");
-    
-  if(target=="home"){
-    loader()    
-    homeBtn.classList.remove("header-button"); 
-    contactBtn.classList.remove("header-btn-active")
-    aboutusBtn.classList.remove("header-btn-active")
-    contactBtn.classList.add("header-button")
-    aboutusBtn.classList.add("header-button")
-    homeBtn.classList.add("header-btn-active");
-    objDOM.style.display="block";
-     document.getElementById("aboutus").style.display="none"
-     document.getElementById("contact").style.display="none"
-    
-    }
-    if(target=="contact"){
-   loader()  
-    contactBtn.classList.remove("header-button"); 
-    homeBtn.classList.remove("header-btn-active")
-    aboutusBtn.classList.remove("header-btn-active")
-    aboutusBtn.classList.add("header-button")
-    homeBtn.classList.add("header-button")
-    contactBtn.classList.add("header-btn-active");
-     objDOM.style.display="block";
-     document.getElementById("aboutus").style.display="none"
-     document.getElementById("home").style.display="none"
-     
-    }
-    if(target=="aboutus"){
-    loader()    
-    aboutusBtn.classList.remove("header-button"); 
-    contactBtn.classList.remove("header-btn-active")
-    homeBtn.classList.remove("header-btn-active")
-    contactBtn.classList.add("header-button")
-    homeBtn.classList.add("header-button")
-    homeBtn.classList.remove("header-btn-active")
-    aboutusBtn.classList.add("header-btn-active");
-     objDOM.style.display="block";
-     document.getElementById("home").style.display="none"
-     document.getElementById("contact").style.display="none"
-    
-    }
-}
-
- function loader(){
-  
-    
-     let loader=document.getElementById("loader");
-    loader.style.display="flex";
-     setTimeout(()=>{
-       loader.style.display="none";
-     }, 1000)
- }
- 
- function themeChange() {
-     let checkBox=document.getElementById("checkbox");
-    //  getComputedStyle(document.documentElement).getPropertyValue('--secondaryBlack');
-     if(checkBox.checked == true){
-     
-        // document.documentElement.style.setProperty('--secondaryBlack', 'pink');
-        // console.log( getComputedStyle(document.documentElement).getPropertyValue('--secondaryBlack'))
-        document.body.style.backgroundColor = "#14325e";
-     }else{
-        // document.documentElement.style.setProperty('--secondaryBlack', 'red');
-        // console.log( getComputedStyle(document.documentElement).getPropertyValue('--secondaryBlack'))
-        document.body.style.backgroundColor = "white";
-     }
-    // checkBox.checked
-  
-}
-function checkOnline() {
-setInterval(function(){
-  let onlineAlert=document.getElementById("offlineAlert")
-  if(navigator.onLine){
-    onlineAlert.style.display="none"
-  }else{
-     onlineAlert.style.display="block"
-  }
-},1000)
-
- 
-}
-</script>
 
 </body>
 </html>
