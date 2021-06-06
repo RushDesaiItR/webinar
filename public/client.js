@@ -49,11 +49,11 @@ let roomId
 // Free public STUN servers provided by Google.
 const iceServers = {
   iceServers: [
-    // { urls: 'stun:stun.l.google.com:19302' },
-    // { urls: 'stun:stun1.l.google.com:19302' },
-    // { urls: 'stun:stun2.l.google.com:19302' },
-    // { urls: 'stun:stun3.l.google.com:19302' },
-    // { urls: 'stun:stun4.l.google.com:19302' },
+     {'urls': 'stun:stun.l.google.com:19302' },
+     {'urls': 'stun:stun1.l.google.com:19302' },
+     {'urls': 'stun:stun2.l.google.com:19302' },
+     {'urls': 'stun:stun3.l.google.com:19302' },
+    {'urls': 'stun:stun4.l.google.com:19302' },
     {'urls': 'stun:stun.l.google.com:19302'},
     {"urls":"turn:numb.viagenie.ca", "username":"webrtc@live.com", "credential":"muazkh"}
   ],
